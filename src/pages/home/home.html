@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>C8C8</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="outer-content speaker-list">
+  <ion-list [virtualScroll]="posts">
+    <ion-grid fixed>
+      <ion-row align-items-stretch>
+
+        <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let post" approxItemHeight="457px">
+
+          <ion-card class="speaker-card">
+            <ion-card-header>
+              <button ion-item detail-none (click)="goToPostDetail(post)">
+                <ion-avatar item-start>
+                  <img [src]="post.profilePic" alt="Post profile pic">
+                </ion-avatar>
+                {{post.name}}
+              </button>
+            </ion-card-header>
+
+            <ion-card-content class="outer-content">
+              <ion-list>
+                <button ion-item (click)="goToPostDetail(post)">
+                  <h3>{{post.date}}</h3>
+                </button>
+
+                <button ion-item (click)="goToPostDetail(post)">
+                  <h3>{{post.about}}</h3>
+                </button>
+
+                <button ion-item (click)="goToPostDetail(post)">
+                  <h3>{{post.phone}}</h3>
+                </button>
+              </ion-list>
+            </ion-card-content>
+
+            <ion-row no-padding>
+              <ion-col col-12 col-lg-auto text-center text-lg-left>
+                <button ion-button clear small color="primary" icon-start (click)="goToSpeakerTwitter(post)">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                  Tweet
+                </button>
+              </ion-col>
+              <ion-col col-12 col-lg-auto text-center>
+                <button ion-button clear small color="primary" icon-start (click)="openSpeakerShare(post)">
+                  <ion-icon name='share-alt'></ion-icon>
+                  Share
+                </button>
+              </ion-col>
+              <ion-col col-12 col-lg-auto text-center text-lg-right>
+                <button ion-button clear small color="primary" icon-start (click)="openContact(post)">
+                  <ion-icon name='chatboxes'></ion-icon>
+                  Contact
+                </button>
+              </ion-col>
+            </ion-row>
+
+          </ion-card>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <ion-fab bottom right #fab>
+    <button ion-fab (click)="showPostForm()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+</ion-content>
