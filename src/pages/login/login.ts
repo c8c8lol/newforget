@@ -29,7 +29,7 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData,public alertCtrl: AlertController,public person:PersonPage) { //private sms: SMS,private emailComposer: EmailComposer
+  constructor(public navCtrl: NavController, public userData: UserData,public alertCtrl: AlertController,public person:PersonPage,private emailComposer: EmailComposer,private sms: SMS) { 
     this.mail=
     {
       name:'',
@@ -171,7 +171,7 @@ export class LoginPage {
     }
   }
   Email_Sending(){
-   /* this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
+    this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
     if(available) {
       //Now we know we can send
     }
@@ -187,11 +187,11 @@ export class LoginPage {
    };
    
    // Send a text message using default options
-   this.emailComposer.open(email);*/
+   this.emailComposer.open(email);
   }
   
   SMS_Sending(){
-    //this.sms.send(this.mail.phone, this.VSCode);
+    this.sms.send(this.mail.phone, this.VSCode);
   }
   Enter_VSCode(){
     let alert = this.alertCtrl.create({

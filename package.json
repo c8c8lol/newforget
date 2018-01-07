@@ -31,9 +31,11 @@
     "@ionic/cli-plugin-cordova": "^1.6.2",
     "@ionic/storage": "2.0.1",
     "cordova-android": "^6.2.3",
+    "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-email-composer": "^0.8.11",
     "cordova-plugin-inappbrowser": "^2.0.1",
+    "cordova-plugin-ionic": "^2.0.4",
     "cordova-plugin-ionic-webview": "^1.1.11",
     "cordova-plugin-nativestorage": "^2.2.2",
     "cordova-plugin-splashscreen": "^4.0.3",
@@ -65,7 +67,16 @@
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-whitelist": {},
-      "ionic-plugin-keyboard": {}
+      "ionic-plugin-keyboard": {},
+      "cordova-plugin-email-composer": {},
+      "cordova-sms-plugin": {},
+      "cordova-plugin-ionic": {
+        "APP_ID": "94d62a7c",
+        "CHANNEL_NAME": "Production",
+        "UPDATE_METHOD": "auto",
+        "UPDATE_API": "https://api.ionicjs.com",
+        "MAX_STORE": "2"
+      }
     },
     "platforms": [
       "android"
