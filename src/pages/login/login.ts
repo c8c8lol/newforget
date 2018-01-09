@@ -71,14 +71,12 @@ export class LoginPage {
       });
       alert.addInput({
         type:'prompt',
-        name: 'username',
-        value: this.mail.name,
+        name: 'userfname',
         placeholder: 'username'
       });
       alert.addInput({
         type:'prompt',
-        name: 'e-mail',
-        value: this.mail.email,
+        name: 'userfmail',
         placeholder: 'e-mail'
       });
 
@@ -92,19 +90,22 @@ export class LoginPage {
       alert.addButton({
           text: 'Submit',
           handler: (data: any) => {
-            this.userData.setUsername(data.username);
-            this.getUsername();//不知道有沒有存到值
-            this.getmail();//同上
-            this.present_alert();
-            this.Email_Sending();
+           // this.userData.setUsername(data.username);
+            //this.getUsername();//不知道有沒有存到值
+            //this.getmail();//同上
+            //console.log(JSON.stringify(data)); //to see the object
+            console.log(data.userfname);
+            console.log(data.userfmail);
+            //this.present_alert(data.userfmail);
+            this.Email_Sending(data.userfname,data.userfmail);
             this.Enter_VSCode();//輸入VSCode後顯示更改密碼介面
           }
         });  
     
         alert.present();
       }
-present_alert(){
-  alert("this is user name"+this.mail.name+"end");
+present_alert(userfname){
+  alert("this is user name"+userfname+"end");
 }
       SMS() {
         let alert = this.alertCtrl.create({
@@ -174,7 +175,7 @@ present_alert(){
       this.navCtrl.push(TabsPage);
     }
   }
-  Email_Sending(){
+  Email_Sending(userfname,userfmail){
     /*this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
     if(available) {
       //Now we know we can send
@@ -195,11 +196,11 @@ present_alert(){
    });*/
    
    this.emailComposer.open({
-    to:      'teiyei5082@gmail.com',
+    to:      userfmail,
     //cc:      'erika@mustermann.de',
     //bcc:     ['john@doe.com', 'jane@doe.com'],
     subject: 'Forget Password',
-    body:    'Dear '+this.mail.name+', the VCode is '+ this.VSCode
+    body:    'Dear '+userfname+', the VCode is '+ this.VSCode
 });
    /*let email = {
      to: 'teiyei5082@gmail.com',//this.mail.email
