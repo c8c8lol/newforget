@@ -25,6 +25,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { EmailComposer } from '@ionic-native/email-composer';
+import { SMS } from '@ionic-native/sms';
 
 @NgModule({
   declarations: [
@@ -74,6 +76,8 @@ import { UserData } from '../providers/user-data';
     StatusBar,
     InAppBrowser,
     SplashScreen,
+    EmailComposer,
+    SMS,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

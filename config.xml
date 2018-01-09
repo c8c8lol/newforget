@@ -78,6 +78,7 @@
     </platform>
     <allow-navigation href="http://192.168.9.22:8100" />
     <engine name="android" spec="^6.2.3" />
+    <engine name="browser" spec="5.0.3" />
     <plugin name="cordova-sqlite-storage" spec="^2.1.0" />
     <plugin name="cordova-plugin-nativestorage" spec="^2.2.2" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
@@ -89,9 +90,10 @@
     <plugin name="cordova-sms-plugin" spec="^0.1.11" />
     <plugin name="cordova-plugin-ionic" spec="^2.0.4">
         <variable name="APP_ID" value="94d62a7c" />
-        <variable name="CHANNEL_NAME" value="Production" />
-        <variable name="UPDATE_METHOD" value="auto" />
+        <variable name="CHANNEL_NAME" value="Master" />
+        <variable name="UPDATE_METHOD" value="background" />
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
+    <plugin name="cordova-plugin-email" spec="^1.2.6" />
 </widget>

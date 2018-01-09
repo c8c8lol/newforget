@@ -31,8 +31,10 @@
     "@ionic/cli-plugin-cordova": "^1.6.2",
     "@ionic/storage": "2.0.1",
     "cordova-android": "^6.2.3",
+    "cordova-browser": "5.0.3",
     "cordova-plugin-add-swift-support": "^1.7.1",
     "cordova-plugin-device": "^1.1.4",
+    "cordova-plugin-email": "^1.2.6",
     "cordova-plugin-email-composer": "^0.8.11",
     "cordova-plugin-inappbrowser": "^2.0.1",
     "cordova-plugin-ionic": "^2.0.4",
@@ -72,14 +74,16 @@
       "cordova-sms-plugin": {},
       "cordova-plugin-ionic": {
         "APP_ID": "94d62a7c",
-        "CHANNEL_NAME": "Production",
-        "UPDATE_METHOD": "auto",
+        "CHANNEL_NAME": "Master",
+        "UPDATE_METHOD": "background",
         "UPDATE_API": "https://api.ionicjs.com",
         "MAX_STORE": "2"
-      }
+      },
+      "cordova-plugin-email": {}
     },
     "platforms": [
-      "android"
+      "android",
+      "browser"
     ]
   }
 }

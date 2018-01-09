@@ -29,7 +29,7 @@ export class LoginPage {
   login: UserOptions = { username: '', password: '' };
   submitted = false;
 
-  constructor(public navCtrl: NavController, public userData: UserData,public alertCtrl: AlertController,public person:PersonPage,private emailComposer: EmailComposer,private sms: SMS) { 
+  constructor(public navCtrl: NavController, public userData: UserData,public alertCtrl: AlertController,private emailComposer: EmailComposer,private sms: SMS) { //public person:PersonPage,
     this.mail=
     {
       name:'',
@@ -171,14 +171,33 @@ export class LoginPage {
     }
   }
   Email_Sending(){
-    this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
+    /*this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
     if(available) {
       //Now we know we can send
+      let alert = this.alertCtrl.create({
+        title: 'succeed!',
+        subTitle: "Really!",
+        });
+        alert.present();
     }
-   });
-   
-   let email = {
-     to: this.mail.email,
+    else
+    {
+      let alert = this.alertCtrl.create({
+        title: 'Fail!',
+        subTitle: "Really!",
+        });
+        alert.present();
+    }
+   });*/
+   this.emailComposer.open({
+    to:      'teiyei5082@gmail.com',
+    cc:      'erika@mustermann.de',
+    bcc:     ['john@doe.com', 'jane@doe.com'],
+    subject: 'Greetings',
+    body:    'How are you? Nice greetings from Leipzig'
+});
+   /*let email = {
+     to: 'teiyei5082@gmail.com',//this.mail.email
      //cc: 'erika@mustermann.de',
      //bcc: ['john@doe.com', 'jane@doe.com'],
      subject: 'Forget Password',
@@ -187,7 +206,8 @@ export class LoginPage {
    };
    
    // Send a text message using default options
-   this.emailComposer.open(email);
+   this.emailComposer.open(email);*/
+   
   }
   
   SMS_Sending(){
@@ -209,7 +229,7 @@ export class LoginPage {
           handler: (data: any) => {
             this.getcode();
             if(this.mail.code == this.VSCode){//顯示更改密碼介面
-              this.person.changePassword();
+              //this.person.changePassword();
             }
           }
         });
