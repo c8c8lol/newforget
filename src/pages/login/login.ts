@@ -66,7 +66,7 @@ export class LoginPage {
   Email() {
     let alert = this.alertCtrl.create({
       title: 'Forget Password',
-      subTitle: "Enter your Username and E-mail to change your password"+this.mail.name+this.mail.email+"**",
+      subTitle: "Enter your Username and E-mail to change your password",
 
       });
       alert.addInput({
@@ -92,8 +92,10 @@ export class LoginPage {
       alert.addButton({
           text: 'Submit',
           handler: (data: any) => {
+            this.userData.setUsername(data.username);
             this.getUsername();//不知道有沒有存到值
             this.getmail();//同上
+            this.present_alert();
             this.Email_Sending();
             this.Enter_VSCode();//輸入VSCode後顯示更改密碼介面
           }
@@ -101,7 +103,9 @@ export class LoginPage {
     
         alert.present();
       }
-
+present_alert(){
+  alert("this is user name"+this.mail.name+"end");
+}
       SMS() {
         let alert = this.alertCtrl.create({
           title: 'Forget Password',
@@ -189,12 +193,13 @@ export class LoginPage {
         alert.present();
     }
    });*/
+   
    this.emailComposer.open({
     to:      'teiyei5082@gmail.com',
-    cc:      'erika@mustermann.de',
-    bcc:     ['john@doe.com', 'jane@doe.com'],
-    subject: 'Greetings',
-    body:    'How are you? Nice greetings from Leipzig'
+    //cc:      'erika@mustermann.de',
+    //bcc:     ['john@doe.com', 'jane@doe.com'],
+    subject: 'Forget Password',
+    body:    'Dear '+this.mail.name+', the VCode is '+ this.VSCode
 });
    /*let email = {
      to: 'teiyei5082@gmail.com',//this.mail.email
