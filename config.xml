@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.c8c8.mail" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>c8c8</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
@@ -88,7 +88,6 @@
     <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-email-composer" spec="^0.8.11" />
     <plugin name="cordova-sms-plugin" spec="^0.1.11" />
-    <plugin name="cordova-plugin-email" spec="^1.2.6" />
     <plugin name="cordova-plugin-ionic" spec="^2.0.4">
         <variable name="APP_ID" value="94d62a7c" />
         <variable name="CHANNEL_NAME" value="Master" />
@@ -96,4 +95,6 @@
         <variable name="UPDATE_API" value="https://api.ionicjs.com" />
         <variable name="MAX_STORE" value="2" />
     </plugin>
+    <plugin name="cordova-plugin-email" spec="^1.2.6" />
+    <plugin name="cordova-plugin-firebase" spec="https://github.com/jestcastro/cordova-plugin-firebase.git" />
 </widget>

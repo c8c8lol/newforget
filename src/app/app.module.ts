@@ -27,6 +27,16 @@ import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import { EmailComposer } from '@ionic-native/email-composer';
 import { SMS } from '@ionic-native/sms';
+import * as firebase from 'firebase';
+
+firebase.initializeApp({
+  apiKey: "AIzaSyCQlzUEYeUfi5dbQXX1MfajJr7YC3fYfAE",
+  authDomain: "test-1-10-11-50.firebaseapp.com",
+  databaseURL: "https://test-1-10-11-50.firebaseio.com",
+  projectId: "test-1-10-11-50",
+  storageBucket: "test-1-10-11-50.appspot.com",
+  messagingSenderId: "472163840681"
+})
 
 @NgModule({
   declarations: [

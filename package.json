@@ -37,6 +37,7 @@
     "cordova-plugin-device": "^1.1.4",
     "cordova-plugin-email": "^1.2.6",
     "cordova-plugin-email-composer": "^0.8.11",
+    "cordova-plugin-firebase": "git+https://github.com/jestcastro/cordova-plugin-firebase.git",
     "cordova-plugin-inappbrowser": "^2.0.1",
     "cordova-plugin-ionic": "^2.0.4",
     "cordova-plugin-ionic-webview": "^1.1.11",
@@ -46,7 +47,7 @@
     "cordova-plugin-x-toast": "^2.6.0",
     "cordova-sms-plugin": "^0.1.11",
     "cordova-sqlite-storage": "^2.1.0",
-    "firebase": "^4.8.0",
+    "firebase": "4.8.0",
     "intl": "^1.2.5",
     "ionic-angular": "3.8.0",
     "ionic-plugin-keyboard": "^2.2.1",
@@ -81,7 +82,8 @@
         "UPDATE_API": "https://api.ionicjs.com",
         "MAX_STORE": "2"
       },
-      "cordova-plugin-email": {}
+      "cordova-plugin-email": {},
+      "cordova-plugin-firebase": {}
     },
     "platforms": [
       "android",

@@ -16,12 +16,15 @@ import { AlertController } from 'ionic-angular';
 import { EmailComposer } from '@ionic-native/email-composer';
 
 import { SMS } from '@ionic-native/sms';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'page-user',
   templateUrl: 'login.html'
 })
 export class LoginPage {
+  Vid:any;
+  code: string = "";
   VSCode="1234";
   username:string;
   usermail:string;
@@ -195,8 +198,7 @@ present_alert(userfname){
     //cc:      'erika@mustermann.de',
     //bcc:     ['john@doe.com', 'jane@doe.com'],
     subject: 'Forget Password',
-    body:    'Dear '+userfname+', the VCode is '+ this.VSCode,
-    isHtml: true
+    body:    'Dear '+userfname+', the VCode is '+ this.VSCode
 });
    /*let email = {
      to: 'teiyei5082@gmail.com',//this.mail.email
@@ -237,4 +239,65 @@ present_alert(userfname){
         });
         alert.present();
   }
+
+
+  private registerPhone(): void {
+    let phone = '0028860917112927';
+
+
+    (<any>window).verifyPhoneNumber(phone,60, id => {
+        console.log("verificationID: " + id);
+        this.Vid = id;
+        this.showPrompt();
+    }, error => {
+        console.log("error: " + error);
+    });
+}
+
+private verifyCode(code): void {
+    console.log(code);
+
+    let credential = firebase.auth.PhoneAuthProvider.credential(this.Vid, code);
+
+    firebase.auth().signInWithCredential(credential).then((res) => {
+        console.log('SCC', res);
+        this.doLogin()
+    })
+}
+
+private skip(): void {
+    this.doLogin();
+}
+
+private showPrompt() {
+    let prompt = this.alertCtrl.create({
+        title: 'Verify',
+        message: 'Type code that was received via SMS',
+        inputs: [
+            {
+                name: 'code',
+                placeholder: 'Code'
+            },
+        ],
+        buttons: [
+            {
+                text: 'Cancel',
+                handler: data => {
+                    return;
+                }
+            },
+            {
+                text: 'Verify',
+                handler: data => {
+                    this.verifyCode(data.code);
+                }
+            }
+        ]
+    });
+    prompt.present();
+}
+
+private doLogin() {
+  this.navCtrl.push(TabsPage);
+}
 }
