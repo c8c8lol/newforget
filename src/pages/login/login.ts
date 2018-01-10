@@ -90,9 +90,6 @@ export class LoginPage {
       alert.addButton({
           text: 'Submit',
           handler: (data: any) => {
-           // this.userData.setUsername(data.username);
-            //this.getUsername();//不知道有沒有存到值
-            //this.getmail();//同上
             //console.log(JSON.stringify(data)); //to see the object
             console.log(data.userfname);
             console.log(data.userfmail);
@@ -110,19 +107,17 @@ present_alert(userfname){
       SMS() {
         let alert = this.alertCtrl.create({
           title: 'Forget Password',
-          subTitle: "Enter your Username and Phone Number to change your password"+this.mail.name+this.mail.phone+"**",
+          subTitle: "Enter your Username and Phone Number to change your password",
     
           });
           alert.addInput({
             type:'prompt',
-            name: 'username',
-            value: this.mail.name,
+            name: 'userfname',
             placeholder: 'username'
           });
           alert.addInput({
             type:'prompt',
-            name: 'phone_number',
-            value: this.mail.phone,
+            name: 'userfphone',
             placeholder: 'phone number'
           });
     
@@ -136,9 +131,9 @@ present_alert(userfname){
           alert.addButton({
               text: 'Submit',
               handler: (data: any) => {
-                this.getUsername();//不知道有沒有存到值
-                this.getphone();//同上
-                this.SMS_Sending();
+                console.log(data.userfname);
+                console.log(data.userfphone);
+                this.SMS_Sending(data.userfname,data.userfphone);
                 this.Enter_VSCode();//之後輸入VSCode後顯示更改密碼介面
               }
             });  
@@ -200,7 +195,8 @@ present_alert(userfname){
     //cc:      'erika@mustermann.de',
     //bcc:     ['john@doe.com', 'jane@doe.com'],
     subject: 'Forget Password',
-    body:    'Dear '+userfname+', the VCode is '+ this.VSCode
+    body:    'Dear '+userfname+', the VCode is '+ this.VSCode,
+    isHtml: true
 });
    /*let email = {
      to: 'teiyei5082@gmail.com',//this.mail.email
@@ -216,8 +212,8 @@ present_alert(userfname){
    
   }
   
-  SMS_Sending(){
-    this.sms.send(this.mail.phone, this.VSCode);
+  SMS_Sending(userfname,userfphone){
+    this.sms.send(userfphone, 'Dear'+userfname+',your VSCode is'+this.VSCode);
   }
   Enter_VSCode(){
     let alert = this.alertCtrl.create({
