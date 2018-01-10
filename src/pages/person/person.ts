@@ -11,7 +11,7 @@ import { UserData } from '../../providers/user-data';
 })
 export class PersonPage {
   username: string;
-
+name:any;
   constructor(public alertCtrl: AlertController, public nav: NavController, public userData: UserData) {
 
   }
@@ -71,5 +71,10 @@ export class PersonPage {
 
   changeEmail() {
     console.log('Clicked to change mail');
+  }
+  test()
+  {
+    this.name=this.userData.gettestname();
+    alert('the answer is'+this.name);
   }
 }

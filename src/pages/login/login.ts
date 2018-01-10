@@ -18,6 +18,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import { SMS } from '@ionic-native/sms';
 import * as firebase from 'firebase';
 
+
 @Component({
   selector: 'page-user',
   templateUrl: 'login.html'
@@ -48,23 +49,7 @@ export class LoginPage {
     });
   }
 
-  getmail() {
-    this.userData.getmail().then((email) => {
-      this.mail.email = email;
-    });
-  }
 
-  getphone() {
-    this.userData.getphone().then((phone) => {
-      this.mail.phone = phone;
-    });
-  }
-
-  getcode() {
-    this.userData.getcode().then((code) => {
-      this.mail.code = code;
-    });
-  }
 
   Email() {
     let alert = this.alertCtrl.create({
@@ -104,9 +89,7 @@ export class LoginPage {
     
         alert.present();
       }
-present_alert(userfname){
-  alert("this is user name"+userfname+"end");
-}
+
       SMS() {
         let alert = this.alertCtrl.create({
           title: 'Forget Password',
@@ -136,6 +119,7 @@ present_alert(userfname){
               handler: (data: any) => {
                 console.log(data.userfname);
                 console.log(data.userfphone);
+                this.userData.settestname(data.userfname);
                 this.SMS_Sending(data.userfname,data.userfphone);
                 this.Enter_VSCode();//之後輸入VSCode後顯示更改密碼介面
               }
@@ -174,44 +158,14 @@ present_alert(userfname){
     }
   }
   Email_Sending(userfname,userfmail){
-    /*this.emailComposer.isAvailable().then((available: boolean) =>{//check whether email is available
-    if(available) {
-      //Now we know we can send
-      let alert = this.alertCtrl.create({
-        title: 'succeed!',
-        subTitle: "Really!",
-        });
-        alert.present();
-    }
-    else
-    {
-      let alert = this.alertCtrl.create({
-        title: 'Fail!',
-        subTitle: "Really!",
-        });
-        alert.present();
-    }
-   });*/
-   
+    
    this.emailComposer.open({
     to:      userfmail,
     //cc:      'erika@mustermann.de',
     //bcc:     ['john@doe.com', 'jane@doe.com'],
     subject: 'Forget Password',
     body:    'Dear '+userfname+', the VCode is '+ this.VSCode
-});
-   /*let email = {
-     to: 'teiyei5082@gmail.com',//this.mail.email
-     //cc: 'erika@mustermann.de',
-     //bcc: ['john@doe.com', 'jane@doe.com'],
-     subject: 'Forget Password',
-     body: 'Dear @username, the VCode is '+ this.VSCode,
-     isHtml: true
-   };
-   
-   // Send a text message using default options
-   this.emailComposer.open(email);*/
-   
+    });   
   }
   
   SMS_Sending(userfname,userfphone){
@@ -225,14 +179,14 @@ present_alert(userfname){
       alert.addInput({
         type:'prompt',
         name: 'VSCode',
-        value: this.mail.name,
         placeholder: 'VSCode'
       });
         alert.addButton({
           text: 'Submit',
           handler: (data: any) => {
-            this.getcode();
-            if(this.mail.code == this.VSCode){//顯示更改密碼介面
+            console.log(data.VSCode);
+            if(data.VSCode == this.VSCode){//顯示更改密碼介面
+              this.present_alert();
               //this.person.changePassword();
             }
           }
@@ -240,64 +194,8 @@ present_alert(userfname){
         alert.present();
   }
 
-
-  private registerPhone(): void {
-    let phone = '0028860917112927';
-
-
-    (<any>window).verifyPhoneNumber(phone,60, id => {
-        console.log("verificationID: " + id);
-        this.Vid = id;
-        this.showPrompt();
-    }, error => {
-        console.log("error: " + error);
-    });
-}
-
-private verifyCode(code): void {
-    console.log(code);
-
-    let credential = firebase.auth.PhoneAuthProvider.credential(this.Vid, code);
-
-    firebase.auth().signInWithCredential(credential).then((res) => {
-        console.log('SCC', res);
-        this.doLogin()
-    })
-}
-
-private skip(): void {
-    this.doLogin();
-}
-
-private showPrompt() {
-    let prompt = this.alertCtrl.create({
-        title: 'Verify',
-        message: 'Type code that was received via SMS',
-        inputs: [
-            {
-                name: 'code',
-                placeholder: 'Code'
-            },
-        ],
-        buttons: [
-            {
-                text: 'Cancel',
-                handler: data => {
-                    return;
-                }
-            },
-            {
-                text: 'Verify',
-                handler: data => {
-                    this.verifyCode(data.code);
-                }
-            }
-        ]
-    });
-    prompt.present();
-}
-
-private doLogin() {
-  this.navCtrl.push(TabsPage);
-}
+  present_alert(){
+    alert('changing password');
+  }
+  
 }

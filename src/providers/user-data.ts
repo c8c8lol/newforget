@@ -6,6 +6,7 @@ import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class UserData {
+  testname:any;
   _favorites: string[] = [];
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
@@ -58,34 +59,11 @@ export class UserData {
     });
   };
 
-  setmail(mail: string): void {
-    this.storage.set('mail', mail);
+  settestname(username: string): void {
+    this.testname=username;
   };
-
-  getmail(): Promise<string> {
-    return this.storage.get('mail').then((value) => {
-      return value;
-    });
-  };
-
-  setphone(phone: string): void {
-    this.storage.set('phone', phone);
-  };
-
-  getphone(): Promise<string> {
-    return this.storage.get('phone').then((value) => {
-      return value;
-    });
-  };
-
-  setcode(code: string): void {
-    this.storage.set('code', code);
-  };
-
-  getcode(): Promise<string> {
-    return this.storage.get('code').then((value) => {
-      return value;
-    });
+  gettestname(): void {
+    return this.testname;
   };
 
   hasLoggedIn(): Promise<boolean> {
